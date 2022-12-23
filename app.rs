@@ -1,5 +1,6 @@
 use std::env::args;
 mod file;
+mod execute;
 
 fn main() { 
     let args : Vec<String> = args().collect();
@@ -26,5 +27,5 @@ fn main() {
         return;
     }
 
-    println!("{}", file::get_line(0, file_path));
+    execute::execute(file::get_line(0, file_path));
 }
