@@ -9,3 +9,7 @@ This is my first time writing anything in Rust so there are bound to be many mis
 This is a learning journey, not a commercial product.
 
 Cift will probably be absolute garbage, but this is just my journey to learn Rust.
+
+# Liscense
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/us/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 United States License</a>.
