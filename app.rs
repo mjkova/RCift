@@ -1,18 +1,17 @@
 use std::env::args;
+use std::collections::HashMap;
 mod file;
 mod execute;
 
 fn main() { 
+    let mut integers : HashMap<String, i32> = HashMap::new();
+    
     let args : Vec<String> = args().collect();
     
     let mut arg_one : bool = false;
-    let mut counter : i32 = 0;
-
-    for _item in &args {
-        if counter == 1 {
-            arg_one = true;
-        }
-        counter += 1;
+    
+    if args.len() == 2 {
+        arg_one = true;
     }
 
     if !arg_one {
@@ -27,5 +26,7 @@ fn main() {
         return;
     }
 
-    execute::execute(file::get_line(0, file_path));
+    integers.extend(execute::set_ints(file::get_line(0, file_path)));
+
+    println!("{}", execute::get_int("x".to_string(), integers));
 }
