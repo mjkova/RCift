@@ -27,7 +27,7 @@ fn main() {
         return;
     }
 
-    integers.extend(execute::set_ints(file::get_line(0, file_path)));
+    integers.extend(execute::set_all_ints("main.cift".to_string()));
 
-    println!("{}", check_null::is_int_null(execute::get_int("x".to_string(), integers)));
+    println!("{}", execute::get_int("y".to_string(), integers));
 }
