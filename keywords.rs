@@ -18,11 +18,6 @@ pub fn get_and_execute(line: String, hash: HashMap<String, i32>) -> bool {
             return false;
         }
         if firstch == '"'.to_string() {
-            if firstch == ' '.to_string() {
-                println!("Starting letter of the string is {}, consider removing spaces beetween the quotations and parentheses", firstch);
-                return true;
-            }
-
             let mut chars = slice.chars();
             chars.next();
             chars.next_back();
@@ -31,8 +26,12 @@ pub fn get_and_execute(line: String, hash: HashMap<String, i32>) -> bool {
             print(s.to_string());
             return false;
         }
-        else if !execute::is_int_variable(slice.clone().to_string(), hash.clone()) && !slice.contains(&'"'.to_string()) {
-            println!("Variable {}, does not exist", slice);
+        else if firstch == ' '.to_string() {
+            println!("Starting letter of the print statement is '{}', consider removing spaces beetween the quotations and parentheses", firstch);
+            return true;
+        }
+        else if !execute::is_int_variable(slice.clone().to_string(), hash.clone()) {
+            println!("Variable '{}', does not exist", slice);
             return true;
         }
     }
