@@ -3,6 +3,7 @@ use std::collections::HashMap;
 mod file;
 mod execute;
 mod check_null;
+mod keywords;
 
 fn main() { 
     let mut integers : HashMap<String, i32> = HashMap::new();
@@ -29,5 +30,5 @@ fn main() {
 
     integers.extend(execute::set_all_ints("main.cift".to_string()));
 
-    println!("{}", execute::get_int("y".to_string(), integers));
+    keywords::get_and_execute(file::get_line(2, "main.cift".to_string()), integers);
 }
