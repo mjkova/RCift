@@ -50,3 +50,11 @@ pub fn get_int(line: String, integers: HashMap<String, i32>) -> i32 {
     }
     res.unwrap().clone()
 }
+
+pub fn is_int_variable(name: String, hash: HashMap<String, i32>) -> bool {
+    let res = hash.get(&name.clone());
+    if res == None {
+        return false;
+    }
+    true
+}
