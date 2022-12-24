@@ -1,11 +1,14 @@
 use std::env::args;
 use std::collections::HashMap;
+use std::time::{Instant};
 mod file;
 mod execute;
 mod check_null;
 mod keywords;
 
 fn main() { 
+    let current = Instant::now();
+    
     let mut integers : HashMap<String, i32> = HashMap::new();
     
     let args : Vec<String> = args().collect();
@@ -36,4 +39,8 @@ fn main() {
         println!("Fix errors then re-build program.");
         return;
     }
+
+    let duration = current.elapsed();
+    
+    println!("Execution finished in: {:?}", duration);
 }
