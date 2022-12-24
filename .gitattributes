@@ -1,1 +1,1 @@
-*.cift linguist-language=Cift
+*.cift linguist-detectable=false
