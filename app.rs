@@ -2,6 +2,7 @@ use std::env::args;
 use std::collections::HashMap;
 mod file;
 mod execute;
+mod check_null;
 
 fn main() { 
     let mut integers : HashMap<String, i32> = HashMap::new();
@@ -28,5 +29,5 @@ fn main() {
 
     integers.extend(execute::set_ints(file::get_line(0, file_path)));
 
-    println!("{}", execute::get_int("x".to_string(), integers));
+    println!("{}", check_null::is_int_null(execute::get_int("x".to_string(), integers)));
 }
