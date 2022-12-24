@@ -30,5 +30,10 @@ fn main() {
 
     integers.extend(execute::set_all_ints("main.cift".to_string()));
 
-    keywords::get_and_execute(file::get_line(2, "main.cift".to_string()), integers);
+    let execute_result : bool = keywords::get_and_execute(file::get_line(2, "main.cift".to_string()), integers);
+
+    if execute_result {
+        println!("Fix errors then re-build program.");
+        return;
+    }
 }
