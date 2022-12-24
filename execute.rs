@@ -1,5 +1,25 @@
 use std::collections::HashMap;
 
+use crate::file;
+use crate::check_null;
+
+pub fn set_all_ints(file_name: String) -> HashMap<String, i32> {
+    let mut map : HashMap<String, i32> = HashMap::new();
+
+    let lines : i32 = file::get_lines_count(file_name.clone());
+
+    for i in 0..lines-1 {
+        if !check_null::is_int_null(i) {
+            let res : String = file::get_line(i, file_name.clone());
+            if !check_null::is_string_null(res.clone()) {
+                map.extend(set_ints(res));
+            }
+        }
+    }
+
+    map
+}
+
 pub fn set_ints(line: String) -> HashMap<String, i32> {
     let mut line_array : Vec<String> = line.split(" ").map(|s| s.to_string()).collect();
 
