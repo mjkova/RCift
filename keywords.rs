@@ -2,22 +2,41 @@ use std::collections::HashMap;
 
 use crate::execute;
 
-pub fn get_and_execute(line: String, hash: HashMap<String, i32>) {
+pub fn get_and_execute(line: String, hash: HashMap<String, i32>) -> bool {
     if line.contains("print") {
-        let slice = line.chars().rev().nth(2).unwrap();
+        let start_bytes = line.find('(').unwrap(); 
+            
+        let end_bytes = line.find(')').unwrap();
+        let slice = String::from_utf8((&line.as_bytes()[start_bytes+1..end_bytes]).to_vec()).unwrap();
+
+        let vecstr : Vec<u8> = vec![line.as_bytes()[start_bytes+1]];
+        
+        let firstch = String::from_utf8(vecstr).unwrap();
 
         if execute::is_int_variable(slice.clone().to_string(), hash.clone()) {
             print(execute::get_int(slice.clone().to_string(), hash.clone()).to_string());
+            return false;
         }
-        if slice == '"' {
-            let start_bytes = line.find('(').unwrap(); 
-            
-            let end_bytes = line.find(')').unwrap();
-            let result = &line[start_bytes+2..end_bytes-1];
+        if firstch == '"'.to_string() {
+            if firstch == ' '.to_string() {
+                println!("Starting letter of the string is {}, consider removing spaces beetween the quotations and parentheses", firstch);
+                return true;
+            }
 
-            print(result.to_string());
+            let mut chars = slice.chars();
+            chars.next();
+            chars.next_back();
+            let s = chars.as_str().to_string();
+
+            print(s.to_string());
+            return false;
+        }
+        else if !execute::is_int_variable(slice.clone().to_string(), hash.clone()) && !slice.contains(&'"'.to_string()) {
+            println!("Variable {}, does not exist", slice);
+            return true;
         }
     }
+    return false;
 }
 
 fn print(msg: String) {
