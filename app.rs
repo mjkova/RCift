@@ -33,12 +33,13 @@ fn main() {
     }
 
     let count : i32 = file::get_lines_count(file_path.clone());
-
-    integers.extend(execute::set_all_ints(file_path.clone()));
-    strings.extend(execute::set_all_strings(file_path.clone()));
     
     for i in 0..count {
-        let execute_result : bool = keywords::get_and_execute(file::get_line(i, file_path.clone()), integers.clone(), strings.clone());
+        let line : String = file::get_line(i, file_path.clone());
+        let execute_result : bool = keywords::get_and_execute(line.clone(), integers.clone(), strings.clone());
+
+        integers.extend(execute::set_int(line.clone()));
+        strings.extend(execute::set_string(line.clone()));
 
         if execute_result {
             println!("Fix errors then re-build program.");
