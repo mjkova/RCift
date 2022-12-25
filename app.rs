@@ -10,6 +10,7 @@ fn main() {
     let current = Instant::now();
     
     let mut integers : HashMap<String, i32> = HashMap::new();
+    let mut strings : HashMap<String, String> = HashMap::new();
     
     let args : Vec<String> = args().collect();
     
@@ -31,9 +32,10 @@ fn main() {
         return;
     }
 
-    integers.extend(execute::set_all_ints("main.cift".to_string()));
+    integers.extend(execute::set_all_ints(file_path.clone()));
+    strings.extend(execute::set_all_strings(file_path.clone()));
 
-    let execute_result : bool = keywords::get_and_execute(file::get_line(2, "main.cift".to_string()), integers);
+    let execute_result : bool = keywords::get_and_execute(file::get_line(2, file_path.clone()), integers, strings);
 
     if execute_result {
         println!("Fix errors then re-build program.");
