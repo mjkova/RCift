@@ -100,10 +100,7 @@ pub fn set_strings(line: String) -> HashMap<String, String> {
     }
     
     if &line_array[0] == &"string".to_string() {
-        chars = line_array[3].chars();
-        chars.next_back();
-        chars.next();
-        line_array[3] = chars.as_str().to_string();
+        line_array[3] = file::convert_string::remove_first_and_last(line_array[3].clone());
         strings.insert(String::from(&line_array[1]), line_array[3].to_string());
     }
 
