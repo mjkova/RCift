@@ -12,20 +12,9 @@ fn main() {
     let mut integers : HashMap<String, i32> = HashMap::new();
     let mut strings : HashMap<String, String> = HashMap::new();
     
-    let args : Vec<String> = args().collect();
-    
-    let mut arg_one : bool = false;
-    
-    if args.len() == 2 {
-        arg_one = true;
-    }
+    let args : String = args().nth(1).expect("No cift file provided");
 
-    if !arg_one {
-        println!("No cift file provided");
-        return;
-    }
-
-    let file_path : String = args[1].clone();
+    let file_path : String = args.clone();
 
     if !file_path.ends_with(".cift") {
         println!("Given file is not a valid cift file");
@@ -47,7 +36,5 @@ fn main() {
         }
     }
 
-    let duration = current.elapsed();
-    
-    println!("Execution finished in: {:?}", duration);
+    println!("Execution finished in: {:?}", current.elapsed());
 }
