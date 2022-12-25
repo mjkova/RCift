@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-mod convert;
+use crate::file;
 use crate::execute;
 
 pub fn get_and_execute(line: String, hash: HashMap<String, i32>, strings: HashMap<String, String>) -> bool {
@@ -12,9 +12,9 @@ pub fn get_and_execute(line: String, hash: HashMap<String, i32>, strings: HashMa
 
 // BEGIN KEYWORD PRINT
 fn print_parse(line: String, hash: HashMap<String, i32>, strings: HashMap<String, String>) -> bool {
-    let slice = convert::convert_string::find_between(line.clone(), '(', ')');
+    let slice = file::convert_string::find_between(line.clone(), '(', ')');
         
-    let firstch = convert::convert_string::get_letter(slice.clone(), 0);
+    let firstch = file::convert_string::get_letter(slice.clone(), 0);
 
     if execute::is_int_variable(slice.clone().to_string(), hash.clone()) {
         print(execute::get_int(slice.clone().to_string(), hash.clone()).to_string());
@@ -25,7 +25,7 @@ fn print_parse(line: String, hash: HashMap<String, i32>, strings: HashMap<String
         return false;
     }
     if firstch == '"'.to_string() {
-        let s = convert::convert_string::remove_first_and_last(slice);
+        let s = file::convert_string::remove_first_and_last(slice);
         print(s.to_string());
         return false;
     }
